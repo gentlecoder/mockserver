@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "mock服务器",
   "main": "index.js",
+  "bin": {
+    "mock": "mock.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js"
@@ -23,6 +26,7 @@
     "koa-logger": "^3.2.1",
     "koa-router": "^7.4.0",
     "mockjs": "^1.1.0",
-    "nodemon": "^1.19.4"
+    "nodemon": "^1.19.4",
+    "shelljs": "^0.8.4"
   }
 }

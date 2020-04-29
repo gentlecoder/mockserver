@@ -1,0 +1,10 @@
+{
+  "code": 0,
+  "msg": "ok",
+  "result|3-14": [
+    {
+      "sku|124564-200000": 133333,
+      "merchandiseName|": "@string(7, 10)"
+    }
+  ]
+}

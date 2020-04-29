@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const Koa = require('koa')
 const Router = require('koa-router')
 const glob = require('glob')
@@ -17,13 +18,16 @@ glob.sync(resolve('./mymock', '**/*.json')).forEach((item, i) => {
   let apiJsonPath = item && item.split('/mymock')[1]
   let apiPath = apiJsonPath.replace('.json', '')
 
-  router.get(apiPath, (ctx, next) => {
+  router.all(apiPath, async (ctx, next) => {
     try {
+      await new Promise((resolve) => {
+        setTimeout(resolve, 200)
+      })
       let jsonStr = fs.readFileSync(item).toString()
       ctx.body = {
         data: Mock.mock(JSON.parse(jsonStr)),
-        state: 200,
-        type: 'success' // 自定义响应体
+        code: 0,
+        msg: 'success', // 自定义响应体
       }
     } catch (err) {
       ctx.throw('服务器错误', 500)
@@ -34,7 +38,7 @@ glob.sync(resolve('./mymock', '**/*.json')).forEach((item, i) => {
   routerMap[apiJsonPath] = apiPath
 })
 
-fs.writeFile('./routerMap.json', JSON.stringify(routerMap, null, 4), err => {
+fs.writeFile('./routerMap.json', JSON.stringify(routerMap, null, 4), (err) => {
   if (!err) {
     console.log('路由地图生成成功！')
   }

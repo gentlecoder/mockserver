@@ -1,3 +1,5 @@
 {
+    "/auth/goods/v1/info.json": "/auth/goods/v1/info",
+    "/auth/goods/v1/list.json": "/auth/goods/v1/list",
     "/user/userinfo.json": "/user/userinfo"
 }
